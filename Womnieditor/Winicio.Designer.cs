@@ -75,6 +75,7 @@
             this.cmdrtf.TabIndex = 3;
             this.cmdrtf.Text = "rtf";
             this.cmdrtf.UseVisualStyleBackColor = true;
+            this.cmdrtf.Click += new System.EventHandler(this.cmdrtf_Click);
             // 
             // Winicio
             // 

@@ -99,6 +99,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Wrtf.resx">
+      <DependentUpon>Wrtf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Wtxt.resx">
       <DependentUpon>Wtxt.cs</DependentUpon>
     </EmbeddedResource>

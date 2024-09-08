@@ -35,7 +35,7 @@
             this.cmdborrararchivo = new System.Windows.Forms.Button();
             this.cmdguardarcambios = new System.Windows.Forms.Button();
             this.cmdcreararchivo = new System.Windows.Forms.Button();
-            this.saveFileDialogtxt = new System.Windows.Forms.SaveFileDialog();
+            this.savepatchtxt = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // cmdinicio
@@ -133,6 +133,6 @@
         private System.Windows.Forms.Button cmdborrararchivo;
         private System.Windows.Forms.Button cmdguardarcambios;
         private System.Windows.Forms.Button cmdcreararchivo;
-        private System.Windows.Forms.SaveFileDialog saveFileDialogtxt;
+        private System.Windows.Forms.SaveFileDialog savepatchtxt;
     }
 }

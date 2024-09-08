@@ -30,5 +30,12 @@ namespace Womnieditor
            wcsv.Show();
            this.Hide();
         }
+
+        private void cmdrtf_Click(object sender, EventArgs e)
+        {
+            Wrtf wrtf = new Wrtf();
+            wrtf.Show();
+            this.Hide();
+        }
     }
 }

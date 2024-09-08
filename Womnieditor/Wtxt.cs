@@ -81,10 +81,10 @@ namespace Womnieditor
 
         private void cmdcreararchivo_Click(object sender, EventArgs e)
         {
-            saveFileDialogtxt.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialogtxt.FileName = "texto 1";
-            saveFileDialogtxt.ShowDialog();
-            using (StreamWriter filewrite = new StreamWriter(saveFileDialogtxt.FileName))
+            savepatchtxt.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            savepatchtxt.FileName = "texto 1";
+            savepatchtxt.ShowDialog();
+            using (StreamWriter filewrite = new StreamWriter(savepatchtxt.FileName))
             {
                 filewrite.Write(txtArchivo.Text);
             }
