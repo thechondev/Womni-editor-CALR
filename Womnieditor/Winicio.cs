@@ -23,5 +23,12 @@ namespace Womnieditor
             wtxt.Show();
             this.Hide();
         }
+
+        private void cmdcsv_Click(object sender, EventArgs e)
+        {
+           Wcsv wcsv = new Wcsv();
+           wcsv.Show();
+           this.Hide();
+        }
     }
 }

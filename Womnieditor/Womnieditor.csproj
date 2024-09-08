@@ -52,6 +52,12 @@
     <Compile Include="csv.Designer.cs">
       <DependentUpon>csv.cs</DependentUpon>
     </Compile>
+    <Compile Include="csvnuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="csvnuevo.Designer.cs">
+      <DependentUpon>csvnuevo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Winicio.cs">
       <SubType>Form</SubType>
     </Compile>

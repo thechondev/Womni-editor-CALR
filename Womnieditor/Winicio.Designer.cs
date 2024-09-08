@@ -54,6 +54,7 @@
             this.cmdcsv.TabIndex = 2;
             this.cmdcsv.Text = "csv";
             this.cmdcsv.UseVisualStyleBackColor = true;
+            this.cmdcsv.Click += new System.EventHandler(this.cmdcsv_Click);
             // 
             // cmdxml
             // 
