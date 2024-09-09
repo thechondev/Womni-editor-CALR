@@ -37,5 +37,12 @@ namespace Womnieditor
             wrtf.Show();
             this.Hide();
         }
+
+        private void cmdxml_Click(object sender, EventArgs e)
+        {
+            Wxml wxml = new Wxml();
+            wxml.Show();
+            this.Hide();
+        }
     }
 }

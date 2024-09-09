@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Womnieditor
 {
-    public partial class Wxlx : Form
+    public partial class Wxml : Form
     {
-        public Wxlx()
+        public Wxml()
         {
             InitializeComponent();
+        }
+
+        private void cmdinicio_Click(object sender, EventArgs e)
+        {
+            Winicio winicio = new Winicio();
+            winicio.Show();
+            this.Hide();
         }
     }
 }

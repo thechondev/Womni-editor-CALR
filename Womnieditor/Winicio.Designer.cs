@@ -65,6 +65,7 @@
             this.cmdxml.TabIndex = 1;
             this.cmdxml.Text = "xml";
             this.cmdxml.UseVisualStyleBackColor = true;
+            this.cmdxml.Click += new System.EventHandler(this.cmdxml_Click);
             // 
             // cmdrtf
             // 

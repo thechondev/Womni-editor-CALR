@@ -15,6 +15,8 @@ namespace Womnieditor
         private Stream myStream;
         int counter = 0;
         string line;
+        
+
         private void cmdinicio_Click(object sender, EventArgs e)
         {
             Winicio winicio = new Winicio();
@@ -55,6 +57,8 @@ namespace Womnieditor
             string[] valores;
             string[] Encabezado;
 
+            
+
             openpatchtxt.InitialDirectory = Application.StartupPath;
             openpatchtxt.Filter = "Archivos (*.csv)|*.csv";
             if (openpatchtxt.ShowDialog() == DialogResult.OK)
@@ -90,8 +94,6 @@ namespace Womnieditor
                                         dtGCSV.Rows.Add(valores.ToArray());
                                         dtGCSV.BeginEdit(true);
                                         
-                                        //txtArchivo.Text = txtArchivo.Text + line;
-                                        //counter++;
                                     }
 
                                 }
@@ -106,9 +108,11 @@ namespace Womnieditor
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
 
-               
+
+
             }
         }
+
 
         private void cmdmodcelda_Click(object sender, EventArgs e)
         {
@@ -117,7 +121,16 @@ namespace Womnieditor
 
         private void dtGCSV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtcelda.Text = dtGCSV[(dtGCSV.CurrentCell.ColumnIndex), (dtGCSV.CurrentCell.RowIndex)].Value.ToString();
+            if (dtGCSV.CurrentCell.Value != null)
+            {
+                txtcelda.Text = dtGCSV[(dtGCSV.CurrentCell.ColumnIndex), (dtGCSV.CurrentCell.RowIndex)].Value.ToString();
+            }
+
+            else
+            {
+                dtGCSV.CurrentCell.Value = " ";
+            }
+            
         }
 
         private void cmdborcelda_Click(object sender, EventArgs e)
@@ -127,8 +140,86 @@ namespace Womnieditor
 
         private void cmdcreararchivo_Click(object sender, EventArgs e)
         {
+            if(dtGCSV.ColumnCount == 0)
+            {
+                MessageBox.Show("No se pudo crear archivo, porque no hay datos en la tabla");
+            }
+            else
+            {
+                try
+                {
+                    savepatchCSV.InitialDirectory = Application.StartupPath;
+                    savepatchCSV.Filter = "Archivos (*.csv)|*.csv";
 
+                    if (savepatchCSV.ShowDialog() == DialogResult.OK)
+                    {
+
+                        using (StreamWriter file = new StreamWriter(savepatchCSV.FileName, false, Encoding.UTF8))
+                        {
+
+                            for (int i = 0; i < dtGCSV.Columns.Count; i++)
+                            {
+                                file.Write(dtGCSV.Columns[i].HeaderText);
+                                if (i < dtGCSV.Columns.Count - 1)
+                                {
+                                    file.Write(";");
+                                }
+                            }
+                            file.WriteLine();
+
+                            for (int i = 0; i < dtGCSV.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < dtGCSV.Columns.Count; j++)
+                                {
+                                    file.Write(dtGCSV.Rows[i].Cells[j].Value);
+                                    if (j < dtGCSV.Columns.Count - 1)
+                                    {
+                                        file.Write(",");
+                                    }
+                                }
+                                file.WriteLine();
+
+                            }
+
+                            file.Close();
+
+                        }
+                    }
+                }
+                catch
+                {
+
+                }
+            }
             
+        }
+
+        int i = 0;
+        private void cmdAgcolumna_Click(object sender, EventArgs e)
+        {
+            
+
+            DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+            col1.HeaderText = ("Columna " + i );
+            col1.Width = 200;
+            col1.ReadOnly = true;
+            dtGCSV.Columns.Add(col1);
+
+            i++;
+            
+        }
+
+        private void cmdAgfila_Click(object sender, EventArgs e)
+        {
+            if (dtGCSV.ColumnCount != 0)
+            {
+                dtGCSV.Rows.Add();
+            }
+            else
+            {
+                MessageBox.Show("No se pueden añadir filas si no hay columnas");
+            }
+
         }
     }
 }
