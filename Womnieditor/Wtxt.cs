@@ -77,6 +77,7 @@ namespace Womnieditor
 
             File.WriteAllText(openpatchtxt.FileName, texto);
             MessageBox.Show("Texto guardado en "+openpatchtxt.FileName );
+            
         }
 
         private void cmdcreararchivo_Click(object sender, EventArgs e)

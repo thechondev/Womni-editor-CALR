@@ -32,12 +32,13 @@
             this.cmdcsv = new System.Windows.Forms.Button();
             this.cmdxml = new System.Windows.Forms.Button();
             this.cmdrtf = new System.Windows.Forms.Button();
+            this.lblinicio = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdtxt
             // 
             this.cmdtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdtxt.Location = new System.Drawing.Point(161, 90);
+            this.cmdtxt.Location = new System.Drawing.Point(121, 109);
             this.cmdtxt.Name = "cmdtxt";
             this.cmdtxt.Size = new System.Drawing.Size(92, 30);
             this.cmdtxt.TabIndex = 0;
@@ -48,7 +49,7 @@
             // cmdcsv
             // 
             this.cmdcsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdcsv.Location = new System.Drawing.Point(493, 90);
+            this.cmdcsv.Location = new System.Drawing.Point(453, 109);
             this.cmdcsv.Name = "cmdcsv";
             this.cmdcsv.Size = new System.Drawing.Size(92, 30);
             this.cmdcsv.TabIndex = 2;
@@ -59,7 +60,7 @@
             // cmdxml
             // 
             this.cmdxml.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdxml.Location = new System.Drawing.Point(161, 210);
+            this.cmdxml.Location = new System.Drawing.Point(121, 229);
             this.cmdxml.Name = "cmdxml";
             this.cmdxml.Size = new System.Drawing.Size(92, 30);
             this.cmdxml.TabIndex = 1;
@@ -70,7 +71,7 @@
             // cmdrtf
             // 
             this.cmdrtf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdrtf.Location = new System.Drawing.Point(493, 210);
+            this.cmdrtf.Location = new System.Drawing.Point(453, 229);
             this.cmdrtf.Name = "cmdrtf";
             this.cmdrtf.Size = new System.Drawing.Size(92, 30);
             this.cmdrtf.TabIndex = 3;
@@ -78,11 +79,22 @@
             this.cmdrtf.UseVisualStyleBackColor = true;
             this.cmdrtf.Click += new System.EventHandler(this.cmdrtf_Click);
             // 
+            // lblinicio
+            // 
+            this.lblinicio.AutoSize = true;
+            this.lblinicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblinicio.Location = new System.Drawing.Point(281, 168);
+            this.lblinicio.Name = "lblinicio";
+            this.lblinicio.Size = new System.Drawing.Size(105, 31);
+            this.lblinicio.TabIndex = 4;
+            this.lblinicio.Text = "INICIO";
+            // 
             // Winicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(668, 378);
+            this.Controls.Add(this.lblinicio);
             this.Controls.Add(this.cmdrtf);
             this.Controls.Add(this.cmdcsv);
             this.Controls.Add(this.cmdxml);
@@ -90,6 +102,7 @@
             this.Name = "Winicio";
             this.Text = "Inicio";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -99,6 +112,7 @@
         private System.Windows.Forms.Button cmdcsv;
         private System.Windows.Forms.Button cmdxml;
         private System.Windows.Forms.Button cmdrtf;
+        private System.Windows.Forms.Label lblinicio;
     }
 }
 

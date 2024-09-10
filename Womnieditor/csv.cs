@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CsvHelper;
+using CsvHelper.Configuration;
+using Microsoft.Win32;
 
 namespace Womnieditor
 {
@@ -15,7 +20,7 @@ namespace Womnieditor
         private Stream myStream;
         int counter = 0;
         string line;
-        
+
 
         private void cmdinicio_Click(object sender, EventArgs e)
         {
@@ -57,12 +62,16 @@ namespace Womnieditor
             string[] valores;
             string[] Encabezado;
 
-            
+            MessageBox.Show("Todos los datos actuales en la tabla seran borrados, presione cancelar en la proxima ventana si desea guardar la tabla actual", "PRECAUCION");
+
 
             openpatchtxt.InitialDirectory = Application.StartupPath;
             openpatchtxt.Filter = "Archivos (*.csv)|*.csv";
             if (openpatchtxt.ShowDialog() == DialogResult.OK)
             {
+                dtGCSV.Columns.Clear();
+                dtGCSV.Rows.Clear();
+
                 try
                 {
 
@@ -77,7 +86,7 @@ namespace Womnieditor
                             for (int i = 0; i < Encabezado.Length; i++)
                             {
                                 DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
-                                col1.HeaderText = Encabezado[i] ;
+                                col1.HeaderText = Encabezado[i];
                                 col1.Width = 200;
                                 col1.ReadOnly = true;
                                 dtGCSV.Columns.Add(col1);
@@ -86,14 +95,14 @@ namespace Womnieditor
                             if ((myStream = openpatchtxt.OpenFile()) != null)
                             {
                                 using (myStream)
-                                { 
+                                {
                                     while ((line = file.ReadLine()) != null)
                                     {
                                         valores = line.Split(delimitador);
 
                                         dtGCSV.Rows.Add(valores.ToArray());
                                         dtGCSV.BeginEdit(true);
-                                        
+
                                     }
 
                                 }
@@ -130,7 +139,7 @@ namespace Womnieditor
             {
                 dtGCSV.CurrentCell.Value = " ";
             }
-            
+
         }
 
         private void cmdborcelda_Click(object sender, EventArgs e)
@@ -140,7 +149,7 @@ namespace Womnieditor
 
         private void cmdcreararchivo_Click(object sender, EventArgs e)
         {
-            if(dtGCSV.ColumnCount == 0)
+            if (dtGCSV.ColumnCount == 0)
             {
                 MessageBox.Show("No se pudo crear archivo, porque no hay datos en la tabla");
             }
@@ -162,7 +171,7 @@ namespace Womnieditor
                                 file.Write(dtGCSV.Columns[i].HeaderText);
                                 if (i < dtGCSV.Columns.Count - 1)
                                 {
-                                    file.Write(";");
+                                    file.Write(",");
                                 }
                             }
                             file.WriteLine();
@@ -191,29 +200,29 @@ namespace Womnieditor
 
                 }
             }
-            
+
         }
 
         int i = 0;
         private void cmdAgcolumna_Click(object sender, EventArgs e)
         {
-            
+
 
             DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
-            col1.HeaderText = ("Columna " + i );
+            col1.HeaderText = ("Columna " + i);
             col1.Width = 200;
             col1.ReadOnly = true;
             dtGCSV.Columns.Add(col1);
 
             i++;
-            
+
         }
 
         private void cmdAgfila_Click(object sender, EventArgs e)
         {
             if (dtGCSV.ColumnCount != 0)
             {
-                dtGCSV.Rows.Add();
+                dtGCSV.Rows.Insert(dtGCSV.RowCount - 1);
             }
             else
             {
@@ -221,5 +230,45 @@ namespace Womnieditor
             }
 
         }
+
+        private void cmdguardarcambios_Click(object sender, EventArgs e)
+        {
+
+            StringBuilder csvMemoria = new StringBuilder();
+
+            // Añadir encabezados
+            for (int i = 0; i < dtGCSV.Columns.Count; i++)
+            {
+                csvMemoria.Append(dtGCSV.Columns[i].HeaderText);
+                if (i < dtGCSV.Columns.Count - 1)
+                {
+                    csvMemoria.Append(",");
+                }
+            }
+            csvMemoria.AppendLine();
+
+            // Añadir filas
+            for (int i = 0; i < dtGCSV.Rows.Count; i++)
+            {
+                for (int j = 0; j < dtGCSV.Columns.Count; j++)
+                { 
+                        csvMemoria.Append(dtGCSV.Rows[i].Cells[j].Value);
+                    if (j < dtGCSV.Columns.Count - 1)
+                    {
+                        csvMemoria.Append(",");
+                    }
+                }
+                csvMemoria.AppendLine();
+            }
+
+            // Escribir en el archivo
+            File.WriteAllText(openpatchtxt.FileName, csvMemoria.ToString(), Encoding.UTF8);
+
+            MessageBox.Show("Cambios aplicados en " + openpatchtxt.FileName);
+
+        }
     }
-}
+
+}    
+
+

@@ -41,6 +41,7 @@
             this.cmdAgcolumna = new System.Windows.Forms.Button();
             this.cmdAgfila = new System.Windows.Forms.Button();
             this.savepatchCSV = new System.Windows.Forms.SaveFileDialog();
+            this.lblCelda = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtGCSV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +76,7 @@
             this.cmdguardarcambios.TabIndex = 10;
             this.cmdguardarcambios.Text = "Guardar cambios";
             this.cmdguardarcambios.UseVisualStyleBackColor = true;
+            this.cmdguardarcambios.Click += new System.EventHandler(this.cmdguardarcambios_Click);
             // 
             // cmdborrararchivo
             // 
@@ -164,11 +166,22 @@
             this.cmdAgfila.UseVisualStyleBackColor = true;
             this.cmdAgfila.Click += new System.EventHandler(this.cmdAgfila_Click);
             // 
+            // lblCelda
+            // 
+            this.lblCelda.AutoSize = true;
+            this.lblCelda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCelda.Location = new System.Drawing.Point(405, 345);
+            this.lblCelda.Name = "lblCelda";
+            this.lblCelda.Size = new System.Drawing.Size(138, 16);
+            this.lblCelda.TabIndex = 17;
+            this.lblCelda.Text = "Contenido de la celda";
+            // 
             // Wcsv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 450);
+            this.Controls.Add(this.lblCelda);
             this.Controls.Add(this.cmdAgfila);
             this.Controls.Add(this.cmdAgcolumna);
             this.Controls.Add(this.cmdborcelda);
@@ -203,5 +216,6 @@
         private System.Windows.Forms.Button cmdAgcolumna;
         private System.Windows.Forms.Button cmdAgfila;
         private System.Windows.Forms.SaveFileDialog savepatchCSV;
+        private System.Windows.Forms.Label lblCelda;
     }
 }

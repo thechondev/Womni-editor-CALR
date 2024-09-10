@@ -105,6 +105,7 @@
             this.cmdinicio.TabIndex = 12;
             this.cmdinicio.Text = "Inicio";
             this.cmdinicio.UseVisualStyleBackColor = true;
+            this.cmdinicio.Click += new System.EventHandler(this.cmdinicio_Click);
             // 
             // openpatchtxt
             // 

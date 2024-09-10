@@ -137,5 +137,12 @@ namespace Womnieditor
                 MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
             }
         }
+
+        private void cmdinicio_Click(object sender, EventArgs e)
+        {
+            Winicio winicio = new Winicio();
+            winicio.Show();
+            this.Hide();
+        }
     }
 }
