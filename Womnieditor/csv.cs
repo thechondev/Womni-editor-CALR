@@ -233,7 +233,6 @@ namespace Womnieditor
 
         private void cmdguardarcambios_Click(object sender, EventArgs e)
         {
-
             StringBuilder csvMemoria = new StringBuilder();
 
             // Añadir encabezados
@@ -265,7 +264,6 @@ namespace Womnieditor
             File.WriteAllText(openpatchtxt.FileName, csvMemoria.ToString(), Encoding.UTF8);
 
             MessageBox.Show("Cambios aplicados en " + openpatchtxt.FileName);
-
         }
     }
 

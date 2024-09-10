@@ -86,6 +86,7 @@
             this.cmdguardarcambios.TabIndex = 19;
             this.cmdguardarcambios.Text = "Guardar cambios";
             this.cmdguardarcambios.UseVisualStyleBackColor = true;
+            this.cmdguardarcambios.Click += new System.EventHandler(this.cmdguardarcambios_Click);
             // 
             // cmdborrararchivo
             // 

@@ -18,6 +18,7 @@ namespace Womnieditor
         {
             InitializeComponent();
         }
+        DataSet ds = new DataSet();
 
         private void cmdinicio_Click(object sender, EventArgs e)
         {
@@ -29,14 +30,29 @@ namespace Womnieditor
         private void cmdlxml_Click(object sender, EventArgs e)
         {
             openpatchtxt.Filter = "Archivos (*.xml)|*.xml";
+            MessageBox.Show("Todos los datos actuales en la tabla seran borrados, presione cancelar en la proxima ventana si desea guardar la tabla actual", "PRECAUCION");
+
 
             openpatchtxt.InitialDirectory = Application.StartupPath;
             if (openpatchtxt.ShowDialog() == DialogResult.OK)
             {
+
+                if (dtGCSV.DataSource != null)
+                {
+                    dtGCSV.DataSource = null;
+                    dtGCSV.Columns.Clear();
+                    dtGCSV.Rows.Clear();
+                }
+                else
+                {
+                    dtGCSV.Columns.Clear();
+                    dtGCSV.Rows.Clear();
+                }
+
                 try
                 {
 
-                    DataSet ds = new DataSet();
+
                     ds.ReadXml(openpatchtxt.FileName);
                     dtGCSV.DataSource = ds.Tables[0];
                     dtGCSV.DataSource = dtGCSV.DataSource;
@@ -103,13 +119,24 @@ namespace Womnieditor
             dtGCSV.Rows.RemoveAt(dtGCSV.CurrentCell.RowIndex);
         }
 
-        int i = 0;
+        int i = 1;
 
         private void cmdAgcolumna_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = (DataTable)dtGCSV.DataSource;
-            DataColumn newColumn = new DataColumn("Columna " + i, typeof(string));
-            dataTable.Columns.Add(newColumn);
+            if (dtGCSV.DataSource != null)
+            {
+                DataTable dataTable = (DataTable)dtGCSV.DataSource;
+                DataColumn newColumn = new DataColumn("Columna " + i, typeof(string));
+                dataTable.Columns.Add(newColumn);
+            }
+            else
+            {
+                DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn();
+                col1.HeaderText = ("Columna " + i);
+                col1.Width = 200;
+                col1.ReadOnly = true;
+                dtGCSV.Columns.Add(col1);
+            }
 
             i++;
         }
@@ -119,10 +146,17 @@ namespace Womnieditor
         {
             if (dtGCSV.ColumnCount != 0)
             {
-                DataTable dataTable = (DataTable)dtGCSV.DataSource;
-                DataRow newRow = dataTable.NewRow();
-                
-                dataTable.Rows.Add(newRow);
+                if (dtGCSV.DataSource != null)
+                {
+                    DataTable dataTable = (DataTable)dtGCSV.DataSource;
+                    DataRow newRow = dataTable.NewRow();
+
+                    dataTable.Rows.Add(newRow);
+                }
+                else
+                {
+                    dtGCSV.Rows.Add();
+                }
 
             }
             else
@@ -156,19 +190,69 @@ namespace Womnieditor
                                 dataTable.WriteXml(savepatchCSV.FileName);
                                 MessageBox.Show("Datos guardados en " + savepatchCSV.FileName);
                             }
+                            else
+                            {
+                                DataTable dt = new DataTable();
+
+                                // Creador de columnas del DataTable
+                                foreach (DataGridViewColumn column in dtGCSV.Columns)
+                                {
+                                    column.GetType();
+                                    Type columnType = column.ValueType ?? typeof(string);
+                                    dt.Columns.Add(column.HeaderText, columnType);
+                                }
+
+                                // Creador de filas del DataTable
+                                foreach (DataGridViewRow row in dtGCSV.Rows)
+                                {
+                                    if (row.IsNewRow) continue; 
+                                    DataRow dataRow = dt.NewRow();
+                                    foreach (DataGridViewCell cell in row.Cells)
+                                    {
+                                        dataRow[cell.ColumnIndex] = cell.Value;
+                                    }
+                                    dt.Rows.Add(dataRow);
+                                }
+                                file.Close();
+                                DataTable Newdata = (DataTable)dt;
+                                Newdata.TableName = (savepatchCSV.FileName);
+                                Newdata.WriteXml(savepatchCSV.FileName);
+                                MessageBox.Show("Datos guardados en " + savepatchCSV.FileName);
+
+
+                            }
 
                             file.Close();
 
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
 
+        private void cmdguardarcambios_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter file = new StreamWriter(openpatchtxt.FileName, false, Encoding.UTF8))
+            {
+                DataTable dataTable = (DataTable)dtGCSV.DataSource;
 
+                if (dataTable != null)
+                {
+                    file.Close(); //cerrado para editar
+                    dataTable.WriteXml(openpatchtxt.FileName);
+                    MessageBox.Show("Datos guardados en " + openpatchtxt.FileName);
+                    file.Close(); //cerrado para evitar errores
+                }
+                else
+                {
+                    MessageBox.Show("No se ha creado un archivo para guardar los cambios");
+                }
+
+            }
+        }
     }
 }
