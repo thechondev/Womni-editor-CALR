@@ -41,11 +41,14 @@ namespace Womnieditor
             
             openpatchtxt.InitialDirectory = System.Windows.Forms.Application.StartupPath;
             openpatchtxt.Filter = "Archivos (*.txt)|*.txt";
+            MessageBox.Show("Todos el texto actual sera borrado, presione cancelar en la proxima ventana si desea guardar la tabla actual", "PRECAUCION");
 
             if (openpatchtxt.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
+                    txtArchivo.Clear();
+
                     string ruta = openpatchtxt.FileName;
                     if ((myStream = openpatchtxt.OpenFile()) != null)
                     {
