@@ -233,39 +233,52 @@ namespace Womnieditor
 
         private void cmdguardarcambios_Click(object sender, EventArgs e)
         {
-            StringBuilder csvMemoria = new StringBuilder();
-
-            // Añadir encabezados
-            for (int i = 0; i < dtGCSV.Columns.Count; i++)
+            using (StreamWriter file = new StreamWriter(openpatchtxt.FileName, false, Encoding.UTF8))
             {
-                csvMemoria.Append(dtGCSV.Columns[i].HeaderText);
-                if (i < dtGCSV.Columns.Count - 1)
-                {
-                    csvMemoria.Append(",");
-                }
-            }
-            csvMemoria.AppendLine();
 
-            // Añadir filas
-            for (int i = 0; i < dtGCSV.Rows.Count; i++)
-            {
-                for (int j = 0; j < dtGCSV.Columns.Count; j++)
+                if (savepatchCSV.FileName != "saveFileDialog1")
                 {
-                    csvMemoria.Append(dtGCSV.Rows[i].Cells[j].Value);
-                    if (j < dtGCSV.Columns.Count - 1)
+                    file.Close(); //cerrado de edicion
+                    StringBuilder csvMemoria = new StringBuilder();
+
+                    // Añadir encabezados
+                    for (int i = 0; i < dtGCSV.Columns.Count; i++)
                     {
-                        csvMemoria.Append(",");
+                        csvMemoria.Append(dtGCSV.Columns[i].HeaderText);
+                        if (i < dtGCSV.Columns.Count - 1)
+                        {
+                            csvMemoria.Append(",");
+                        }
                     }
+                    csvMemoria.AppendLine();
+
+                    // Añadir filas
+                    for (int i = 0; i < dtGCSV.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dtGCSV.Columns.Count; j++)
+                        {
+                            csvMemoria.Append(dtGCSV.Rows[i].Cells[j].Value);
+                            if (j < dtGCSV.Columns.Count - 1)
+                            {
+                                csvMemoria.Append(",");
+                            }
+                        }
+                        csvMemoria.AppendLine();
+                    }
+
+                    File.WriteAllText(openpatchtxt.FileName, csvMemoria.ToString(), Encoding.UTF8);
+                    file.Close(); //cerrado de precaucion
+
+                    MessageBox.Show("Cambios aplicados en " + openpatchtxt.FileName);
                 }
-                csvMemoria.AppendLine();
+                else
+                {
+                    MessageBox.Show("No hay archivo en el que guardar los cambios");
+                }
+
             }
-
-            // Escribir en el archivo
-            File.WriteAllText(openpatchtxt.FileName, csvMemoria.ToString(), Encoding.UTF8);
-
-            MessageBox.Show("Cambios aplicados en " + openpatchtxt.FileName);
         }
-    }
 
+    }
 }
 

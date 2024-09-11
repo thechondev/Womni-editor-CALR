@@ -29,39 +29,29 @@
         private void InitializeComponent()
         {
             this.cmdtxt = new System.Windows.Forms.Button();
-            this.cmdcsv = new System.Windows.Forms.Button();
             this.cmdxml = new System.Windows.Forms.Button();
             this.cmdrtf = new System.Windows.Forms.Button();
+            this.cmdcsv = new System.Windows.Forms.Button();
+            this.lblInicio = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cmdtxt
             // 
-            this.cmdtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdtxt.Location = new System.Drawing.Point(161, 90);
+            this.cmdtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdtxt.Location = new System.Drawing.Point(43, 99);
             this.cmdtxt.Name = "cmdtxt";
-            this.cmdtxt.Size = new System.Drawing.Size(92, 30);
+            this.cmdtxt.Size = new System.Drawing.Size(109, 48);
             this.cmdtxt.TabIndex = 0;
             this.cmdtxt.Text = "txt";
             this.cmdtxt.UseVisualStyleBackColor = true;
             this.cmdtxt.Click += new System.EventHandler(this.cmdtxt_Click);
             // 
-            // cmdcsv
-            // 
-            this.cmdcsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdcsv.Location = new System.Drawing.Point(493, 90);
-            this.cmdcsv.Name = "cmdcsv";
-            this.cmdcsv.Size = new System.Drawing.Size(92, 30);
-            this.cmdcsv.TabIndex = 2;
-            this.cmdcsv.Text = "csv";
-            this.cmdcsv.UseVisualStyleBackColor = true;
-            this.cmdcsv.Click += new System.EventHandler(this.cmdcsv_Click);
-            // 
             // cmdxml
             // 
-            this.cmdxml.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdxml.Location = new System.Drawing.Point(161, 210);
+            this.cmdxml.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdxml.Location = new System.Drawing.Point(43, 277);
             this.cmdxml.Name = "cmdxml";
-            this.cmdxml.Size = new System.Drawing.Size(92, 30);
+            this.cmdxml.Size = new System.Drawing.Size(109, 48);
             this.cmdxml.TabIndex = 1;
             this.cmdxml.Text = "xml";
             this.cmdxml.UseVisualStyleBackColor = true;
@@ -69,20 +59,43 @@
             // 
             // cmdrtf
             // 
-            this.cmdrtf.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdrtf.Location = new System.Drawing.Point(493, 210);
+            this.cmdrtf.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdrtf.Location = new System.Drawing.Point(452, 277);
             this.cmdrtf.Name = "cmdrtf";
-            this.cmdrtf.Size = new System.Drawing.Size(92, 30);
+            this.cmdrtf.Size = new System.Drawing.Size(109, 48);
             this.cmdrtf.TabIndex = 3;
             this.cmdrtf.Text = "rtf";
             this.cmdrtf.UseVisualStyleBackColor = true;
             this.cmdrtf.Click += new System.EventHandler(this.cmdrtf_Click);
             // 
+            // cmdcsv
+            // 
+            this.cmdcsv.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdcsv.Location = new System.Drawing.Point(452, 99);
+            this.cmdcsv.Name = "cmdcsv";
+            this.cmdcsv.Size = new System.Drawing.Size(109, 48);
+            this.cmdcsv.TabIndex = 2;
+            this.cmdcsv.Text = "csv";
+            this.cmdcsv.UseVisualStyleBackColor = true;
+            this.cmdcsv.Click += new System.EventHandler(this.cmdcsv_Click);
+            // 
+            // lblInicio
+            // 
+            this.lblInicio.AutoSize = true;
+            this.lblInicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInicio.Location = new System.Drawing.Point(149, 197);
+            this.lblInicio.Name = "lblInicio";
+            this.lblInicio.Size = new System.Drawing.Size(301, 24);
+            this.lblInicio.TabIndex = 4;
+            this.lblInicio.Text = "Seleccione uno de los editores";
+            // 
             // Winicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(614, 450);
+            this.Controls.Add(this.lblInicio);
             this.Controls.Add(this.cmdrtf);
             this.Controls.Add(this.cmdcsv);
             this.Controls.Add(this.cmdxml);
@@ -90,15 +103,17 @@
             this.Name = "Winicio";
             this.Text = "Inicio";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button cmdtxt;
-        private System.Windows.Forms.Button cmdcsv;
         private System.Windows.Forms.Button cmdxml;
         private System.Windows.Forms.Button cmdrtf;
+        private System.Windows.Forms.Button cmdcsv;
+        private System.Windows.Forms.Label lblInicio;
     }
 }
 
